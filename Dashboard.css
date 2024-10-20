@@ -1,0 +1,646 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    height: 100vh; /* Ensure the content fits the entire screen */
+  }
+  .data {
+    display: none; /* Hide main content initially */
+}
+
+  /* Sidebar styling */
+ 
+  .sidebar {
+    position: fixed; /* Fixes the sidebar in place */
+    top: 0; /* Aligns it to the top of the page */
+    left: 0; /* Aligns it to the left of the page */
+    height: 100vh; /* Ensures it takes up the full viewport height */
+    overflow-y: auto; /* Allows scrolling within the sidebar if content overflows */
+    width: 20%; /* Keep your desired width */
+    background-color: #04488b;
+    color: white;
+    min-width: 12%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+/* Ensure the main content takes full width when the page scrolls */
+.main-content {
+  margin-left: 20%; /* Matches the sidebar's width */
+  padding: 20px;
+  
+  width: calc(100% - 20%); /* Ensures the main content takes up the remaining space */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+
+  .logo {
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .logo-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 15px 0;
+  }
+  
+
+  .sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    
+  }
+ #dashboard-link{
+    width: 100%;
+    background-color: white;
+    color: #04488b;
+  }
+  .sidebar ul li a:hover,
+  .sidebar ul li a.active {
+    background-color: white;
+    color: #04488b;
+  }
+  
+  
+  .header-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:85%;
+  }
+  
+  .heading {
+    display: flex;
+    justify-content: left;
+  }
+  
+
+  .search-bar {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 20px;
+  }
+  
+  .search-bar input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .search-bar button {
+    padding: 10px;
+    margin-left: 10px;
+    background-color: #0555a5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .search-bar select {
+  padding: 10px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#loadingSpinner {
+  display: flex;
+  margin-top: 10px; /* Adds some space below the search bar */
+}
+  .spinner {
+    margin: 10px auto;
+
+    display: block;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+  .search-bar button:hover {
+    background-color: white; /* Change background to white when hovered or clicked */
+    color: #04488b; /* Change text color to background color */
+    border: 2px solid #04488b;  }
+  
+  /* Profile styling */
+  .profile {
+    text-align: center;
+  }
+  
+  .profile-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  .profile p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #333;
+  }
+  .Widget{
+    display:flex;
+    margin-left:50px;
+    margin-right:50px;
+    align-items: center;
+  }
+  .weather-widget {
+    display: flex;
+    justify-content: space-between; /* Space between info and icon */
+    padding: 20px;
+    margin-top: 30px;
+    height: 280px; /* Fixed height */
+    border-radius: 8px;
+    text-align: left;
+    width: 70%; /* Adjust width */
+    transition: transform 0.3s, box-shadow 0.3s; /* Add transition for hover effect */
+}
+
+.weather-widget:hover {
+    transform: scale(0.95); /* Zoom out effect on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+}
+.forecast-first {
+    margin-top: 30px;
+    margin-left: 50px; /* Space between first forecast and widget */
+    display: flex; /* Align contents */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: space-between; /* Space out contents evenly */
+    height: 280px; /* Same height as the widget */
+    width: 30%; /* Same width as the widget */
+    background-color: #04488b;
+    color:white;
+    border-radius: 8px; /* Same border-radius as the widget */
+    padding: 18px; /* Add padding for spacing */
+    border: 1px solid #ccc; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow for depth */
+    transition: transform 0.3s, box-shadow 0.3s; /* Add transition for hover effect */
+}
+
+.forecast-first:hover {
+    transform: scale(0.95); /* Zoom out effect on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+}
+
+.weather-info {
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.weather-info h2 {
+  font-size: clamp(30px, 5vw, 40px); /* Scales between 30px and 60px */
+  margin-bottom: 20px;
+}
+
+.weather-info p {
+  margin-left: 30px;
+  font-size: clamp(14px, 3vw, 20px); /* Scales between 14px and 20px */
+}
+
+
+.firstForecast {
+    height: 280px; /* Ensures the height matches the widget */
+    display: flex; /* Make it a flex container */
+    flex-direction: column; /* Stack the contents vertically */
+    justify-content: space-between; /* Space contents evenly */
+    border: 1px solid #ccc; /* Add border to all forecast cards */
+    transition: transform 0.3s, box-shadow 0.3s; /* Add transition for hover effect */
+}
+
+.forecast-card:hover {
+    transform: scale(0.95); /* Zoom out effect on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+}
+
+.forecast-cardfirst {
+    border: 4px dotted #d5d8db; /* Add border to all forecast cards */
+   
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.weather-icon {
+    width: 250px; /* Set a fixed width for the icon */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.weather-widget.clouds {
+    background-color: gray;
+    background-image: url("https://images.unsplash.com/photo-1500740516770-92bd004b996e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGFyayUyMGNsb3VkeSUyMHNreXxlbnwwfHwwfHx8MA%3D%3D");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.weather-widget.sunny {
+    background-color: yellow;
+    background-image: url("https://t4.ftcdn.net/jpg/03/05/09/59/360_F_305095987_GdzExAR8x0LCCNBdanfBIw8HkJiJZzDg.jpg");
+    background-size: cover;
+    background-position: center;
+    color: black;
+}
+
+.weather-widget.drizzle-rain {
+    background-color: blue;
+    background-image: url("data:image/jpeg;base64,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");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.weather-widget.default {
+    background-color: lightblue;
+    background-image: url("https://images.pexels.com/photos/96622/pexels-photo-96622.jpeg?cs=srgb&dl=pexels-asphotograpy-96622.jpg&fm=jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+
+    
+}
+
+.weather-widget.clear {
+  background-color: lightblue;
+  background-image: url("https://images.pexels.com/photos/96622/pexels-photo-96622.jpeg?cs=srgb&dl=pexels-asphotograpy-96622.jpg&fm=jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+
+  
+}
+.weather-widget.thunderstorm {
+    background-color: rgb(83, 83, 83);
+    background-image: url("https://cdn.britannica.com/62/158162-050-9FDE49B4/thunderstorm-and-lightning.jpg?w=400&h=300&c=crop");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.weather-widget.snow {
+    background-color: lightblue;
+    background-image: url("https://images.unsplash.com/photo-1477601263568-180e2c6d046e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c25vd3xlbnwwfHwwfHx8MA%3D%3D");
+    background-size: cover;
+    background-position: center;
+    color: black;
+}
+
+.weather-widget.haze-fog {
+    background-color: #e0e0e0;
+    background-image: url("https://www.treehugger.com/thmb/FpFgHsJA6jVMbK1kqCOzx2WE-bo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__mnn__images__2016__02__fog-bitterroot-mountains-4807feab43334256aded341517fae38f.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-left:50px;
+    margin-right:50px;
+
+    margin-top: 20px;
+}
+
+.forecast-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border: 1px double #99aabb; /* Add border to all forecast cards */
+
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px #99aabb;
+}
+.design{
+  border-radius: 100%;
+  border: 1px double #99aabb; /* Add border to all forecast cards */
+}
+.forecast-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border-radius: 100%;
+    background-color:#0252a1;
+
+    box-shadow: 0 2px 8px #3b4249;
+margin:10px;
+}
+
+.design {
+  width: 40px; /* Set width of the circle */
+  height: 40px; /* Set height of the circle */
+  border-radius: 50%; /* Make it a perfect circle */
+  background: linear-gradient(130deg, #64b5f6,#1c71c7, #04488b); /* Gradient background */
+  /*background-color: #99aabb; /* Set background color for the circle */
+  border: 1px double #99aabb; /* Add border to the circle */
+  display: inline-block; /* Ensures it's inline with heading */
+  vertical-align: middle; /* Aligns it vertically with heading */
+  margin-right: 10px; /* Space between the circle and heading */
+}
+.heading-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.heading-container h2 {
+  background: linear-gradient(130deg, #64b5f6,#1c71c7, #04488b); /* Gradient background */
+  color: white;
+  max-height: 500px;
+  padding:15px;
+  border-radius: 100px; /* Rounded heading */
+  flex-grow: 1; /* Ensure the heading takes the remaining width */
+  margin-left: 10px; /* Space between the circle and heading */
+}
+
+.chart-container {
+  margin-bottom: 20px; /* Space between each chart */
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  border: 2px double #99aabb; /* Add border to all forecast cards */
+
+  box-shadow: 0 2px 8px #99aabb;
+  transition: transform 0.3s, box-shadow 0.3s; /* Add transition for hover effect */
+}
+
+.chart-container:hover {
+  transform: scale(0.95); /* Zoom out effect on hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+}
+
+.charts {
+  margin-left: 40px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column; /* Change to column for vertical stacking */
+  justify-content: flex-start; /* Align items to the start */
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+#weatherDoughnutChart {
+    width: 300px !important;  /* Set the desired width */
+    height: 300px !important; /* Set the desired height */
+    margin: 0 auto;  /* Center the chart */
+}
+
+/* Handle empty input field */
+  #city:empty + #weather-widget, #city:empty + .charts {
+    display: block;
+  }
+  
+  #weather-widget:empty::before, .charts:empty::before {
+    content: "No name entered";
+    color: red;
+    text-align: center;
+  }
+
+  
+/* Media Query for Small Screens */
+@media (max-width: 1025px) {
+    body {
+        flex-direction: column; /* Stack items vertically */
+    }
+    /* 1. Sidebar to the top, logo on the left, buttons on the right, and profile next to buttons */
+    .sidebar {
+      overflow-y: hidden; /* Prevents horizontal scrolling */
+
+        display: flex;
+        flex-direction: row; /* Make sidebar items inline (logo, links, profile) */
+        justify-content: space-between; /* Space between logo and links/profile */
+        align-items: center;
+        padding: 10px;
+        width: 100%; /* Full width for the top bar */
+        height: 100px;
+        position: fixed; /* Fixed position to stick at the top */
+        top: 0;
+        left: 0;
+        background-color: #04488b;
+        z-index: 1000; /* Ensure sidebar stays on top of other elements */
+    }
+  
+    .logo {
+      display: flex;
+      
+    }
+  
+    .logo-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+  .logo h1{
+    margin-top: 7px;
+    margin-left: 7px;
+  }
+    .sidebar ul {
+      display: flex;
+      justify-content: flex-end;
+      list-style: none;
+      padding: 0;
+      margin:0;
+    }
+  
+    .sidebar ul li {
+      margin-left: 15px;
+    }
+  
+    .sidebar ul li a {
+      font-size: 14px;
+      color: white;
+    }
+    #dashboard-link{
+      width: 100%;
+      background-color: white;
+      color: #04488b;
+    }
+    /* Profile to the right of the link buttons */
+        .profile {
+          display: none; /* Hide the profile section */
+        }
+
+    .main-content {
+      margin-left: 0%; /* Matches the sidebar's width */
+
+      display: flex;
+      flex-direction: column;
+        width: 100%;
+        margin-top: 100px; /* Push content down to make room for fixed top bar */
+    }
+    .heading {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    /* 2. Arrange city input, Celsius/Fahrenheit, and button in a column */
+    .search-bar {
+        display: flex;
+        flex-direction: row; /* Column arrangement */
+        align-items: center;
+        justify-content: center; /* Center items horizontally */
+        width: 100%;
+      }
+      
+  
+    .search-bar input{
+      width: 50%; /* Full width of screen */
+      
+    }
+  
+   
+    
+  
+    /* 3. Adjust the widget below the input fields */
+    .Widget {
+      display: flex;
+      flex-direction: column;
+      margin:0;
+      align-items: center;
+      width: 100%; /* Widget takes full width */
+    }
+  
+.weather-icon {
+    width: 150px; /* Set a fixed width for the icon */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.weather-info {
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+.weather-info h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.weather-info p {
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+    .weather-widget {
+      width: 100%; /* Full width on small screens */
+      height: auto;
+      padding: 20px;
+      margin-top: 20px;
+      text-align: left;
+      border-radius: 8px;
+    }
+  
+    /* 4. Adjust forecast to 2 columns and 3 rows */
+    .forecast-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 columns */
+      gap: 10px;
+      margin-top: 20px;
+      margin-left:0;
+      width: 100%;
+
+    }
+    
+    .forecast-card {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border: 1px double #99aabb; /* Double border with color */
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 8px #99aabb; /* Subtle shadow for depth */
+      transition: transform 0.3s, box-shadow 0.3s; /* Hover effect */
+  }
+  /* Center the last card */
+.forecast-card:last-child {
+  width: 55%;
+
+  grid-column: 1 / -1; /* Make the last card span all columns */
+  justify-self: center; /* Center the last card within the grid */
+}
+  .forecast-card img {
+      width: 50px; /* Image size for consistency */
+      height: 50px;
+  }
+  
+    
+    .forecast-first {
+        display: none;
+    } 
+  
+    .forecast-cardfirst {
+        border: none; /* Match border style */
+        padding: none;
+        border-radius: none;
+        text-align: none;
+        background-color: none;
+    }
+    
+    
+  
+    /* 5. Adjust the three charts to fit vertically */
+    .charts {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-left:0;
+      margin-top: 20px;
+    }
+  
+    .chart-container {
+      width: 100%;
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px #ccc;
+      border: 2px solid gray;
+    }
+  
+    #weatherDoughnutChart {
+      width: 100% !important;
+      height: 300px !important;
+      margin: 0 auto;
+    }
+  
+    /* Adjust chart headings */
+    .charts h2 {
+      padding: 10px;
+    }
+  }

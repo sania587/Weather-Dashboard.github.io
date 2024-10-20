@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabel Dashboard</title>
+  <link rel="stylesheet" href="Table.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+
+    #chatbotIcon {
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+    cursor: pointer;
+    background-color:white;
+    border-radius: 100%;
+  }
+  
+  #chatbotIcon img {
+    width: 90px;
+    height: 90px;
+  }
+  #chatbotWindow {
+    position: fixed;
+    bottom: 85px;
+    right: 20px;
+    width: 350px;
+    margin-bottom: 10px;
+    height: 400px;
+    border: 1px solid #ccc;
+    border-top: #0056b3;
+    background-color: white;
+    z-index: 1000;
+    border-radius: 15px;
+    display: none; /* Use flexbox layout */
+    flex-direction: column;
+  }
+      /* Header of chatbot */
+      .chatbot-header {
+        background-color: #04488b;
+        color: white;
+        padding: 15px;
+        font-weight: bold;
+        text-align: center;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        display: flex;
+    align-items: center;
+    justify-content: center;
+      }
+      .chat {
+    width: 60px;
+    height: 60px;
+  }#help {
+    margin-left: 10px;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    padding: 7px;
+    background-color: rgb(102, 104, 4);
+    cursor: pointer; /* Change the cursor to a pointer for better UX */
+}
+
+#helpContent {
+    display: none; /* Ensure it is hidden by default */
+    position: absolute; /* Make it absolute to position below the help icon */
+    width: 300px; /* Adjust the width as needed */
+    top: 50px; /* Position it below the help icon; adjust if necessary */
+    left:20px; /* Align it with the help icon */
+    font-size: 12px;
+    margin-top: 5px; /* Add a small margin for spacing */
+    border: 1px solid #04488b;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white; /* Ensure the background is visible */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow for depth */
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 35px 3fr; /* First column takes 1/4 and second column takes 3/4 */
+    gap: 2px; /* Optional: Add some space between grid items */
+    margin-top: 5px; /* Space above the grid */
+}
+
+.grid-item {
+    padding-bottom: 5px; /* Add some padding for better readability */
+    /* No border is set to hide borders */
+    box-sizing: border-box;
+}
+
+  .chatbot_content
+  {
+    width: 100%;
+  height:100%;
+  }
+  
+  #chatbotMessages {
+   flex-grow: 1; /* Allow this section to grow and take available space */
+    overflow-y: auto; /* Enable scrolling if needed */
+    padding: 10px;
+    height: 60%;
+  }
+      /* Chat messages container */
+    
+      .message {
+        display: flex;
+        margin: 10px 0;
+        border-radius: 8px;
+        max-width: 95%;
+        justify-content: flex-end;
+        word-wrap: break-word;
+      }
+  
+  .message img {
+    width: 50px;
+    height: 50px;
+  }
+      /* Bot message style */
+      .message_bot-message {
+    display: flex;
+    background-color: #90bef0;
+    padding:10px;
+    border-radius: 8px;
+  }
+  
+      /* User message style */
+      #userMessage {
+        background-color: #f5f8f7;
+        text-align: left;
+  /*      margin-left: auto;*/
+        width: 70%;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 11px;
+      }
+  .submit_btn:hover{
+    padding: 8px;
+  
+    background-color: white; /* Change background to white when hovered or clicked */
+    color: #04488b; /* Change text color to background color */
+    border: 2px solid #04488b;
+  }
+  .submit_btn{
+    padding: 10px;
+      margin-left: 10px;
+      background-color: #0555a5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer; 
+  }
+      /* Chatbot input container */
+      .chatbot-input {
+        display: flex;
+        padding: 10px;
+        background-color: white;
+        border-top: 1px solid #ccc;
+      }
+  
+      .chatbot-input input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        outline: none;
+        margin-right: 10px;
+      }
+  
+      .chatbot-input button {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+  
+      .chatbot-input button:hover {
+        background-color: #0056b3;
+      }
+      
+  .submit_section{
+    display: flex;
+    padding: 10px; /* Add some padding for better spacing */
+    border-top: 1px solid #ccc; /* Optional: Add a border to separate it visually */
+    background-color: white;
+  }
+  
+  #loadingSpinner {
+  display: flex;
+  margin-top: 10px; /* Adds some space below the search bar */
+}
+  .spinner {
+    margin: 10px auto;
+
+    display: block;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+      /* Make chatbot responsive */
+      @media (max-width: 600px) {
+  
+        .chatbot-window {
+          width: 100%;
+    bottom: 50px;
+    right: 20px;
+    width: 350px;
+    height: 400px;
+    border: 1px solid #ccc;
+    border-top: #0056b3;
+    background-color: white;
+    z-index: 1000;
+    border-radius: 15px;
+        }
+        
+  
+  #chatbotIcon img {
+    width: 90px;
+    height: 90px;
+  }
+        .chatbot-header {
+          background-color: #04488b;
+        color: white;
+        padding: 15px;
+        font-weight: bold;
+        text-align: center;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        display: flex;
+    align-items: center;
+  
+    justify-content: center;      
+  }
+  
+  .chatbot_content
+  {
+    width: 100%;
+  height:100%;
+  }
+  
+  #chatbotMessages {
+   /* flex-grow: 1; /* Allow this section to grow and take available space */
+    overflow-y: auto; /* Enable scrolling if needed */
+    padding: 10px;
+  
+  }
+  
+  .submit_section
+  {
+  display:flex;
+  justify-content: flex-end;
+  }
+      }
+    </style>
+  
+</head>
+<body>
+  <!-- Sidebar Menu -->
+  <div class="sidebar">
+    <div class="logo">
+      <img src="logo.png" alt="Weather App Logo" class="logo-img"> <!-- Add your logo image -->
+      <h1>Weather App</h1>
+    </div>
+    <ul>
+      <li><a href="Dashboard.html" id="dashboard-link">Dashboard</a></li>
+      <li><a href="Table.html" id="table-link">Tables</a></li>
+    </ul>
+  </div>
+  <script type="importmap">
+    {
+      "imports": {
+        "@google/generative-ai": "https://esm.run/@google/generative-ai"
+      }
+    }
+  </script>
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="heading">
+      <div class="header-bar">
+        <div class="search-bar">
+            <input type="text" id="city" placeholder="Enter city name">
+            <select id="tempUnit">
+              <option value="celsius">°C</option>
+              <option value="fahrenheit">°F</option>
+            </select>
+            <button id="getWeather">Get Weather</button>
+        </div>
+          
+      </div>
+      <div class="profile">
+        <img src="https://img.freepik.com/free-vector/cute-girl-hacker-operating-laptop-cartoon-vector-icon-illustration-people-technology-isolated-flat_138676-9487.jpg" alt="User Profile" class="profile-img"> <!-- Add your profile image -->
+        <p><b>Sania Zaheer</b></p> <!-- Replace with user name -->
+      </div>
+    </div>
+    <div id="error-message" style="display:none;"></div> <!-- Add this div to display error messages -->
+<!-- Add this spinner to your HTML where you'd like it to appear -->
+<div id="loadingSpinner" style="display: none;">
+  <div class="spinner"></div>
+</div>
+
+   <!-- Table for Temperature Forecast -->
+    <div class="data">
+      <table id="forecastTable">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Icon</th>
+            <th>Temperature (°C)</th>
+            <th>Description</th>
+            <th>Humidity (%)</th>
+            <th>Wind Speed (m/s)</th>
+          </tr>
+        </thead>
+        <tbody id="forecastTableBody"></tbody>
+      </table>
+      
+      <!-- Pagination Controls -->
+      <!-- Add this below your table -->
+       <div id="paginationControls"></div>
+
+      
+      <!-- Filter and Sort Buttons -->
+      <div class="filters">
+        <button id="reset">Reset Table</button>
+        <button id="sortAsc">Sort Ascending</button>
+        <button id="sortDesc">Sort Descending</button>
+        <button id="filterRain">Filter Rain</button>
+        <button id="highestTemp">Highest Temperature</button>
+      </div>
+
+      <!-- Chatbot Icon -->
+     
+      <div id="chatbotIcon">
+        <img src="chatbot.png" alt="Chatbot Icon">
+      </div>
+      
+      <!-- Chatbot Window -->
+      <div id="chatbotWindow">
+        <div class="chatbot-header">
+          <img class="chat" src="chatbot2.png" alt="Chatbot Icon2">
+          <h3>Chatbot Assistant</h3>
+          <img id="help" src="help.png" alt="help icon">
+    
+        </div>
+        <div id="helpContent" style="display: none; margin-top: 10px; border: 3px solid rgb(102, 104, 4); padding: 10px; border-radius: 5px;">
+          <p>These questions can help you interact with the chatbot.</p>
+          <div class="grid-container">
+        <div class="grid-item"><strong>Q 1:</strong></div>
+        <div class="grid-item">What is the current weather in London?</div>
+
+        <div class="grid-item"><strong>Q 2:</strong></div>
+        <div class="grid-item">Can you give me the forecast for tomorrow in Sydney?</div>
+        
+        <div class="grid-item"><strong>Q 3:</strong></div>
+        <div class="grid-item">How was the weather yesterday in Paris?</div>
+
+        <div class="grid-item"><strong>Q 4:</strong></div>
+        <div class="grid-item">Is there any rain / clouds / clear sky expected in Chicago this week?</div>
+        
+        <div class="grid-item"><strong>Q 5:</strong></div>
+        <div class="grid-item">What are the chances of snow / Thunderstorm in Toronto next week?</div>
+        
+        <div class="grid-item"><strong>Q 6:</strong></div>
+        <div class="grid-item">What was the temperature in Austin on October 1, 2023?</div>
+    </div>
+  </div>
+        <div id="chatbotMessages">
+          <div class="message">
+            <img src="chatbot.png" alt="Chatbot Icon">
+            <div class="message_bot-message">
+              <h4><strong>Bot:</strong></h4>
+              <p style="margin-left: 8px;"> Hi, how can I assist you today?</p>
+            </div>
+          </div>
+        </div>
+        <div class="submit_section">
+          <input type="text" id="userMessage" placeholder="Type a message...">
+          <button class="submit_btn" id="submitButton">Send</button>
+        </div>
+      </div>
+  </div>
+  <script type="module" src="Table.js"></script>
+  
+</body>
+</html>

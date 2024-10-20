@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="Dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Sidebar Menu -->
+  <div class="sidebar">
+    <div class="logo">
+      <img src="logo.png" alt="Weather App Logo" class="logo-img"> <!-- Add your logo image -->
+      <h1>Weather App</h1>
+    </div>
+    <ul>
+      <li><a href="Dashboard.html" id="dashboard-link">Dashboard</a></li>
+      <li><a href="Table.html" id="table-link">Tables</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="heading">
+      <div class="header-bar">
+        <div class="search-bar">
+            <input type="text" id="city" placeholder="Enter city name">
+            <select id="tempUnit">
+              <option value="celsius">°C</option>
+              <option value="fahrenheit">°F</option>
+            </select>
+            <button id="getWeather">Get Weather</button>
+        </div>
+          
+      </div>
+      <div class="profile">
+        <img src="https://img.freepik.com/free-vector/cute-girl-hacker-operating-laptop-cartoon-vector-icon-illustration-people-technology-isolated-flat_138676-9487.jpg" alt="User Profile" class="profile-img"> <!-- Add your profile image -->
+        <p><b>Sania Zaheer</b></p> <!-- Replace with user name -->
+      </div>
+    </div>
+    <div id="error-message" style="display:none;"></div> <!-- Add this div to display error messages -->
+    <div id="loadingSpinner" style="display: none;">
+      <div class="spinner"></div>
+    </div>
+    <div class="data">
+    <!--Widget-->
+    <div class="Widget">
+        <div id="weather-widget" class="weather-widget">
+            <div class="weather-info">
+                <h2 id="city-name"></h2>
+                <p id="temperature"></p>
+                <p id="humidity"></p>
+                <p id="wind-speed"></p>
+                <p id="weather-description"></p>
+            </div>
+            <img id="weather-icon" class="weather-icon" />
+        </div>
+        <div class="forecast-first">
+            <div id="firstForecast" class="forecast-cardfirst"></div> <!-- First forecast card -->
+        </div>
+       
+    </div>
+    
+    <!-- Forecast grid for the remaining days -->
+    <div id="forecastContainer" class="forecast-grid"></div>
+    
+
+  <!-- Charts Section -->
+  <div class="charts"> 
+    <div class="chart-container">
+        <div class="heading-container">
+            <div class="design"></div>
+            <h2>Temperature Bar Chart</h2>
+        </div>
+        <canvas id="tempBarChart" width="900" height="400"></canvas>
+    </div>
+    <div class="chart-container">
+        <div class="heading-container">
+            <div class="design"></div>
+            <h2>Weather Doughnut Chart</h2>
+        </div>
+        <canvas id="weatherDoughnutChart" width="400" height="400"></canvas>
+    </div>
+    <div class="chart-container">
+        <div class="heading-container">
+            <div class="design"></div>
+            <h2>Temperature Line Chart</h2>
+        </div>
+        <canvas id="tempLineChart" width="900" height="400"></canvas>
+    </div>
+</div>
+</div>
+
+  </div>
+
+  <script src="Dashboard.js"></script>
+</body>
+</html>
