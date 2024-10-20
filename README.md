@@ -1,8 +1,7 @@
-Here’s your project description with the requested breaks (`<br>`) where necessary:
-
----
 
 **Project: Weather Dashboard with Table and Chatbot Assistant** <br>
+
+---
 
 ### Overview: <br>
 This project is a web-based weather dashboard that allows users to search for current weather conditions and view forecasts for various cities. The application consists of two pages: <br>
@@ -47,7 +46,7 @@ To run the project locally, ensure you have: <br>
 ### Instructions to Run Locally <br>
 #### 4.1. Clone or Download the Project: <br>
 ```bash
-git clone https://github.com/your-username/weather-dashboard.git
+git clone https://github.com/sania587/Weather-Dashboard.git
 ```
 Or simply download the files as a ZIP and extract them. <br>
 
