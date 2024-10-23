@@ -87,4 +87,13 @@ const GEMINI_API_KEY = 'YOUR_GOOGLE_GENERATIVE_AI_KEY';
 
 ---
 
-With this setup, you should be able to explore the Weather Dashboard and Table functionalities locally. Enjoy using the **Weather Dashboard**! <br>
+With this setup, you should be able to explore the Weather Dashboard and Table functionalities locally. Enjoy using the **Weather Dashboard**! <br><br>
+
+---
+## License and Copyright
+
+© 2024 Sania Zaheer. All rights reserved.<br><br>
+
+This project and its contents, including code, documentation, and related materials, are licensed under the [MIT License](LICENSE) unless stated otherwise. You may use, distribute, and modify this code under the terms of the license. Any unauthorized reproduction, distribution, or modification of this material without prior written consent from the author is strictly prohibited.<br><br>
+
+For inquiries, please contact zaheersania7@gmail.com.
