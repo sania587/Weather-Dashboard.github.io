@@ -46,7 +46,7 @@ To run the project locally, ensure you have: <br>
 ### Instructions to Run Locally <br>
 #### 4.1. Clone or Download the Project: <br>
 ```bash
-git clone https://github.com/sania587/Weather-Dashboard.git
+git clone https://github.com/sania587/Weather-Dashboard.github.io
 ```
 Or simply download the files as a ZIP and extract them. <br>
 
@@ -56,13 +56,6 @@ In **Dashboard.js** and **Table.js**, update the following lines: <br>
 ```javascript
 const apiKey = 'YOUR_OPENWEATHER_API_KEY';
 const GEMINI_API_KEY = 'YOUR_GOOGLE_GENERATIVE_AI_KEY';
-```
-
-#### 4.3. Run the Project: <br>
-Open either **Dashboard.html** or **Table.html** in a web browser. <br>
-You can use [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) for VSCode or a simple HTTP server like Python: <br>
-```bash
-python3 -m http.server
 ```
 
 ---
