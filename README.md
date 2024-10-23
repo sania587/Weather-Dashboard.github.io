@@ -46,7 +46,7 @@ To run the project locally, ensure you have: <br>
 ### Instructions to Run Locally <br>
 #### 4.1. Clone or Download the Project: <br>
 ```bash
-git clone https://github.com/sania587/Weather-Dashboard.git
+git clone https://github.com/sania587/Weather-Dashboard.github.io
 ```
 Or simply download the files as a ZIP and extract them. <br>
 
@@ -56,13 +56,6 @@ In **Dashboard.js** and **Table.js**, update the following lines: <br>
 ```javascript
 const apiKey = 'YOUR_OPENWEATHER_API_KEY';
 const GEMINI_API_KEY = 'YOUR_GOOGLE_GENERATIVE_AI_KEY';
-```
-
-#### 4.3. Run the Project: <br>
-Open either **Dashboard.html** or **Table.html** in a web browser. <br>
-You can use [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) for VSCode or a simple HTTP server like Python: <br>
-```bash
-python3 -m http.server
 ```
 
 ---
@@ -94,4 +87,13 @@ python3 -m http.server
 
 ---
 
-With this setup, you should be able to explore the Weather Dashboard and Table functionalities locally. Enjoy using the **Weather Dashboard**! <br>
+With this setup, you should be able to explore the Weather Dashboard and Table functionalities locally. Enjoy using the **Weather Dashboard**! <br><br>
+
+---
+## License and Copyright
+
+© 2024 Sania Zaheer. All rights reserved.<br><br>
+
+This project and its contents, including code, documentation, and related materials, are licensed under the [MIT License](LICENSE) unless stated otherwise. You may use, distribute, and modify this code under the terms of the license. Any unauthorized reproduction, distribution, or modification of this material without prior written consent from the author is strictly prohibited.<br><br>
+
+For inquiries, please contact zaheersania7@gmail.com.
